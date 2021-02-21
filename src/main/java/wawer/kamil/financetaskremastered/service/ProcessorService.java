@@ -1,5 +1,6 @@
 package wawer.kamil.financetaskremastered.service;
 
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.web.multipart.MultipartFile;
 import wawer.kamil.financetaskremastered.model.xml.AccountsXml;
 
@@ -8,5 +9,5 @@ import java.io.IOException;
 
 public interface ProcessorService {
 
-    AccountsXml welcomeEndpoint(MultipartFile multipartFile) throws IOException, XMLStreamException;
+    InputStreamResource welcomeEndpoint(MultipartFile multipartFile) throws IOException, XMLStreamException;
 }
