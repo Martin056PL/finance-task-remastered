@@ -19,7 +19,25 @@ public class Account {
         this.iban = iban;
         this.name = name;
         this.currency = currency;
-        this.balance = new BigDecimal(balance);
-        this.date = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+        this.balance = parseValidBalance(balance);
+        this.date = parseValidDate(date);
+    }
+
+    private BigDecimal parseValidBalance(String balance) {
+        try {
+            return new BigDecimal(balance);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private LocalDate parseValidDate(String date) {
+        try {
+            return LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

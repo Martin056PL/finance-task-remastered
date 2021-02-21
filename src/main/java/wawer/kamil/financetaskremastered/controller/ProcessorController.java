@@ -18,12 +18,7 @@ public class ProcessorController {
     private final ProcessorService processorService;
 
     @PostMapping
-    public ResponseEntity<AccountsXml> getFile(@RequestParam(value = "file", required = true) MultipartFile multipartFile) throws IOException, XMLStreamException {
+    public ResponseEntity<AccountsXml> getFile(@RequestParam(value = "file") MultipartFile multipartFile) throws IOException, XMLStreamException {
         return ResponseEntity.ok(processorService.welcomeEndpoint(multipartFile));
-    }
-
-    @GetMapping
-    public ResponseEntity<AccountsXml> getFile1(@RequestParam(value = "file", required = false) MultipartFile multipartFile) throws IOException, XMLStreamException {
-        return ResponseEntity.ok(processorService.welcomeEndpoint());
     }
 }
