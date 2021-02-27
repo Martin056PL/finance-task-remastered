@@ -20,11 +20,12 @@ public class UploadFile {
     @Value("${requiredFileType}")
     private static String requiredFileType;
 
-    public static boolean isUploadedFileTypeCorrect(MultipartFile multipartFile){
-        return !multipartFile.getContentType().equals(requiredFileType);
-    }
+
 
     public InputStream uploadXmlFile(MultipartFile multipartFile) {
+        if(UploadFile.isUploadedFileTypeCorrect(multipartFile)){
+            throw new InvalidFileTypeException();
+        }
         try {
             return multipartFile.getInputStream();
         } catch (IOException e) {
@@ -42,5 +43,9 @@ public class UploadFile {
             e.printStackTrace();
         }
         throw new FileNotFoundException("File Exception");
+    }
+
+    private static boolean isUploadedFileTypeCorrect(MultipartFile multipartFile){
+        return !multipartFile.getContentType().equals(requiredFileType);
     }
 }

@@ -24,9 +24,6 @@ public class ProcessorController {
 
     @PostMapping
     public ResponseEntity<Resource> getFile(@RequestParam(value = "file") MultipartFile multipartFile) throws IOException, XMLStreamException {
-        if(UploadFile.isUploadedFileTypeCorrect(multipartFile)){
-            return ResponseEntity.badRequest().build();
-        };
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(processorService.welcomeEndpoint(multipartFile));
